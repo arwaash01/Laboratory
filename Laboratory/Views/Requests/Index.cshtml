@@ -4,13 +4,67 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="row bg-light">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div class="row mt-3">
+        <div class="col-2">
+            <select class="form-select float-start">
+                <option>Language</option>
+                <option value="1">English </option>
+                <option value="2">Arabic </option>
+            </select>
+        </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <button type="button" class="btn btn-info text-light">
+                        System Config
+                    </button>
+                </div>
+            </div>
+        
+    </div>
+    <div class="row bg-info my-3 mx-2 rounded ">
+        <h5 class=" text-light text-center">Request List</h5>
+    </div>
+    <div class="row border border-1 rounded mx-auto">
+        <div class="col-auto my-4">
+            <div class="form-group">
+                <select name="College" class="form-select">
+                    <option>Select</option>
+                    <option value="1">الطب البشري ( المقر الرئيسي)</option>
+                    <option value="2">الطب والعلوم الطبية (القطاع الجنوبي)</option>
+                    <option value="3">طب الأسنان (القطاع الغربي)</option>
+                    <option value="4">طب الأسنان (القطاع الرئيسي)</option>
+                    <option value="5">الصيدلة ( المقر الرئيسي)</option>
+                    <option value="6">الصيدلة (القطاع الجنوبي)</option>
+                    <option value="7">العلوم الطبية التطبيقية</option>
+                    <option value="8">البصريات</option>
+                    <option value="9">التمريض</option>
+                    <option value="10">التأهيل الطبي</option>
+                    <option value="11">العلوم الصحية</option>
+                    <option value="12">الصحة العامة والمعلوماتية</option>
+                    <option value="13">كلية الزراعة</option>
+                </select>
+              
+            </div>
+        </div>
+        <div class="col-auto my-4">
+            <input type="text" class="form-control" placeholder="College Name Search">
+        </div>
+        <div class="col-auto my-4">
+            <button type="button" class="btn btn-info text-light float-end">Extract</button>
+        </div>
+        <div class="col-auto my-4">
+            <b class="text-danger">Extract all or as per search results</b>
+        </div>
+        </div>
 <table class="table">
-    <thead>
+    <thead class="table-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.NationalResidenceId)
@@ -129,3 +183,4 @@
 }
     </tbody>
 </table>
+</div>

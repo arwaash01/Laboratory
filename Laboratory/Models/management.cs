@@ -1,8 +1,10 @@
 ﻿namespace Laboratory.Models
 {
-    public class management
+    public class Management
     {
 
-        public string DailyRequestLimitation { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Value { get; set; }
     }
 }

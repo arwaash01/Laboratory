@@ -11,5 +11,6 @@ namespace Laboratory.Data
         {
         }
         public DbSet<Laboratory.Models.Requests>? Requests { get; set; }
+        public DbSet<Laboratory.Models.Management>? Management { get; set; }
     }
 }

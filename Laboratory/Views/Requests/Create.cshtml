@@ -4,104 +4,214 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Requests</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row bg-light">
+<div class="row mt-3">
+    <div class="col-2">
+        <select class="form-select float-start">
+            <option>Language</option>
+            <option value="1">English </option>
+            <option value="2">Arabic </option>
+        </select>
+
+    </div>
+    </div>
+    <div class="row bg-info my-3 mx-2 rounded ">
+        <h5 class=" text-light text-center">Student and Interns Screening Application Form</h5>
+    </div>
+
+   
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NationalResidenceId" class="control-label"></label>
-                <input asp-for="NationalResidenceId" class="form-control" />
-                <span asp-validation-for="NationalResidenceId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UniversityNumber" class="control-label"></label>
-                <input asp-for="UniversityNumber" class="form-control" />
-                <span asp-validation-for="UniversityNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StudentStatus" class="control-label"></label>
-                <input asp-for="StudentStatus" class="form-control" />
-                <span asp-validation-for="StudentStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="College" class="control-label"></label>
-                <input asp-for="College" class="form-control" />
+            <!--first row-->
+            <div class="row">
+                <div class="col">
+                <div class="form-group">
+                   <label asp-for="NationalResidenceId" class="control-label"></label>
+                   <input asp-for="NationalResidenceId" class="form-control" />
+                   <span asp-validation-for="NationalResidenceId" class="text-danger"></span>         
+                </div>
+                </div>
+                <div class="col">
+                <div class="form-group">
+                       <label asp-for="UniversityNumber" class="control-label"></label>
+                       <input asp-for="UniversityNumber" class="form-control" />
+                       <span asp-validation-for="UniversityNumber" class="text-danger"></span>                
+                  </div>
+                  </div>
+                <div class="col">
+                <div class="form-group">
+                      <label asp-for="StudentStatus" class="control-label">Student Status</label>
+                        <select asp-for="StudentStatus" class="form-select">
+                          <option>Select</option>
+                          <option value="1">New Student</option>
+                          <option value="2">Intern</option>
+                          </select>
+                         <span asp-validation-for="StudentStatus" class="text-danger"></span>
+                </div>
+                </div>
+                <div class="col">
+                <div class="form-group">
+                 <label asp-for="College" class="control-label">College</label>
+                    <select asp-for="College" class="form-select">
+                    <option>Select</option>
+                    <option value="1">الطب البشري ( المقر الرئيسي)</option>
+                    <option value="2">الطب والعلوم الطبية (القطاع الجنوبي)</option>
+                    <option value="3">طب الأسنان (القطاع الغربي)</option>
+                    <option value="4">طب الأسنان (القطاع الرئيسي)</option>
+                    <option value="5">الصيدلة ( المقر الرئيسي)</option>
+                    <option value="6">الصيدلة (القطاع الجنوبي)</option>
+                    <option value="7">العلوم الطبية التطبيقية</option>
+                    <option value="8">البصريات</option>
+                    <option value="9">التمريض</option>
+                    <option value="10">التأهيل الطبي</option>
+                    <option value="11">العلوم الصحية</option>
+                    <option value="12">الصحة العامة والمعلوماتية</option>
+                    <option value="13">كلية الزراعة</option>
+                </select>
                 <span asp-validation-for="College" class="text-danger"></span>
-            </div>
+
+                </div>
+                </div>
+             </div>
+
+            <!--second row-->
+            <div class="row">
+                <div class="col">
             <div class="form-group">
                 <label asp-for="FirstNameEnglish" class="control-label"></label>
-                <input asp-for="FirstNameEnglish" class="form-control" />
+                     <input asp-for="FirstNameEnglish" class="form-control" placeholder="Name" />
                 <span asp-validation-for="FirstNameEnglish" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="LastNameEnglish" class="control-label"></label>
-                <input asp-for="LastNameEnglish" class="form-control" />
+                <input asp-for="LastNameEnglish" class="form-control" placeholder="Name" />
                 <span asp-validation-for="LastNameEnglish" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="GrandFatherNameEnglish" class="control-label"></label>
-                <input asp-for="GrandFatherNameEnglish" class="form-control" />
+                <input asp-for="GrandFatherNameEnglish" class="form-control" placeholder="Name" />
                 <span asp-validation-for="GrandFatherNameEnglish" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="FamilyNameEnglish" class="control-label"></label>
-                <input asp-for="FamilyNameEnglish" class="form-control" />
+                <input asp-for="FamilyNameEnglish" class="form-control" placeholder="Name" />
                 <span asp-validation-for="FamilyNameEnglish" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            </div>
+            </div>
+            <!--3ed row-->
+            <div class="row">
+            <div class="col">
+                <div class="form-group">
                 <label asp-for="FirstNameArabic" class="control-label"></label>
-                <input asp-for="FirstNameArabic" class="form-control" />
+                <input asp-for="FirstNameArabic" class="form-control" placeholder="Name" />
                 <span asp-validation-for="FirstNameArabic" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            </div>
+            <div class="col">
+                <div class="form-group">
                 <label asp-for="LastNameArabic" class="control-label"></label>
-                <input asp-for="LastNameArabic" class="form-control" />
+                <input asp-for="LastNameArabic" class="form-control" placeholder="Name" />
                 <span asp-validation-for="LastNameArabic" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="GrandFatherNameArabic" class="control-label"></label>
-                <input asp-for="GrandFatherNameArabic" class="form-control" />
+                <input asp-for="GrandFatherNameArabic" class="form-control" placeholder="Name" />
                 <span asp-validation-for="GrandFatherNameArabic" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="FamilyNameArabic" class="control-label"></label>
-                <input asp-for="FamilyNameArabic" class="form-control" />
+                <input asp-for="FamilyNameArabic" class="form-control" placeholder="Name" />
                 <span asp-validation-for="FamilyNameArabic" class="text-danger"></span>
             </div>
+            </div>
+            </div>
+            <!--4th row-->
+            <div class="row">
+                <div class="col">
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" type="email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="PhoneNo" class="control-label"></label>
                 <input asp-for="PhoneNo" class="form-control" />
                 <span asp-validation-for="PhoneNo" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label"></label>
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label asp-for="MedicalFileNo" class="control-label"></label>
-                <input asp-for="MedicalFileNo" class="form-control" />
+                <input asp-for="MedicalFileNo" class="form-control" placeholder="Optional" />
                 <span asp-validation-for="MedicalFileNo" class="text-danger"></span>
             </div>
+            </div>
+        </div>
+        <hr/>
+
+            <!--5th row-->
+            <div class="row">
+                <b class="text-info">Kindly select a sutable date and time for needed test.</b>
+            <div class="col-3">
             <div class="form-group">
                 <label asp-for="TestDate" class="control-label"></label>
                 <input asp-for="TestDate" class="form-control" />
                 <span asp-validation-for="TestDate" class="text-danger"></span>
+                    </div>
+                </div>
+            
+                 <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input mx-1" type="checkbox" name="confirmation" required>
+                                 I declare that the above-mentioned data is accurate and filled out by me pesonally.
+                                </label>
+                            </div>
+                   
+                    
+            
+            <hr>
+            <div class="col">
+                    <b class="text-danger">Important Note</b>
+                    <p class="text-info">
+                        *Lab is open from 8:00 AM till 1:00
+                        <br>
+                        *Student that did not submit a request through the portal will not be accepted
+                        <br>
+                        *Blood resulted within 14 days, Kindly bring the approved university/institution test'foorm to be filled
+                        out.
+                    </p>
+
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+             
+                <div class="form-group">
+                  <input type="submit" value="Submit" class="btn btn-primary float-end"/>
             </div>
+            
+        </div>
+
         </form>
-    </div>
+    
 </div>
 
 <div>
