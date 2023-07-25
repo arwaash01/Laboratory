@@ -41,10 +41,10 @@
             @Html.DisplayFor(model => model.FirstNameEnglish)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastNameEnglish)
+            @Html.DisplayNameFor(model => model.FatherNameEnglish)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastNameEnglish)
+            @Html.DisplayFor(model => model.FatherNameEnglish)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.GrandFatherNameEnglish)
@@ -65,10 +65,10 @@
             @Html.DisplayFor(model => model.FirstNameArabic)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastNameArabic)
+            @Html.DisplayNameFor(model => model.FatherNameArabic)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastNameArabic)
+            @Html.DisplayFor(model => model.FatherNameArabic)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.GrandFatherNameArabic)
@@ -115,6 +115,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

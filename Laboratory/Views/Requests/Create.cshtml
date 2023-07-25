@@ -44,8 +44,8 @@
                       <label asp-for="StudentStatus" class="control-label">Student Status</label>
                         <select asp-for="StudentStatus" class="form-select">
                           <option>Select</option>
-                          <option value="1">New Student</option>
-                          <option value="2">Intern</option>
+                        <option >New Student</option>
+                        <option >Intern</option>
                           </select>
                          <span asp-validation-for="StudentStatus" class="text-danger"></span>
                 </div>
@@ -54,20 +54,20 @@
                 <div class="form-group">
                  <label asp-for="College" class="control-label">College</label>
                     <select asp-for="College" class="form-select">
-                    <option>Select</option>
-                    <option value="1">الطب البشري ( المقر الرئيسي)</option>
-                    <option value="2">الطب والعلوم الطبية (القطاع الجنوبي)</option>
-                    <option value="3">طب الأسنان (القطاع الغربي)</option>
-                    <option value="4">طب الأسنان (القطاع الرئيسي)</option>
-                    <option value="5">الصيدلة ( المقر الرئيسي)</option>
-                    <option value="6">الصيدلة (القطاع الجنوبي)</option>
-                    <option value="7">العلوم الطبية التطبيقية</option>
-                    <option value="8">البصريات</option>
-                    <option value="9">التمريض</option>
-                    <option value="10">التأهيل الطبي</option>
-                    <option value="11">العلوم الصحية</option>
-                    <option value="12">الصحة العامة والمعلوماتية</option>
-                    <option value="13">كلية الزراعة</option>
+                    <option></option>
+                    <option >الطب البشري ( المقر الرئيسي)</option>
+                    <option >الطب والعلوم الطبية (القطاع الجنوبي)</option>
+                    <option >طب الأسنان (القطاع الغربي)</option>
+                    <option >طب الأسنان (القطاع الرئيسي)</option>
+                    <option >الصيدلة ( المقر الرئيسي)</option>
+                    <option >الصيدلة (القطاع الجنوبي)</option>
+                    <option >العلوم الطبية التطبيقية</option>
+                    <option >البصريات</option>
+                    <option >التمريض</option>
+                    <option >التأهيل الطبي</option>
+                    <option >العلوم الصحية</option>
+                    <option >الصحة العامة والمعلوماتية</option>
+                    <option >كلية الزراعة</option>
                 </select>
                 <span asp-validation-for="College" class="text-danger"></span>
 
@@ -86,9 +86,9 @@
             </div>
             <div class="col">
             <div class="form-group">
-                <label asp-for="LastNameEnglish" class="control-label"></label>
-                <input asp-for="LastNameEnglish" class="form-control" placeholder="Name" />
-                <span asp-validation-for="LastNameEnglish" class="text-danger"></span>
+                <label asp-for="FatherNameEnglish" class="control-label"></label>
+                    <input asp-for="FatherNameEnglish" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="FatherNameEnglish" class="text-danger"></span>
             </div>
             </div>
             <div class="col">
@@ -117,9 +117,9 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                <label asp-for="LastNameArabic" class="control-label"></label>
-                <input asp-for="LastNameArabic" class="form-control" placeholder="Name" />
-                <span asp-validation-for="LastNameArabic" class="text-danger"></span>
+                <label asp-for="FatherNameArabic" class="control-label"></label>
+                    <input asp-for="FatherNameArabic" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="FatherNameArabic" class="text-danger"></span>
             </div>
             </div>
             <div class="col">
@@ -149,14 +149,14 @@
             <div class="col">
             <div class="form-group">
                 <label asp-for="PhoneNo" class="control-label"></label>
-                <input asp-for="PhoneNo" class="form-control" />
+                <input asp-for="PhoneNo" class="form-control" placeholder="05xxxxxxxx"/>
                 <span asp-validation-for="PhoneNo" class="text-danger"></span>
             </div>
             </div>
             <div class="col">
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label"></label>
-                <input asp-for="BirthDate" class="form-control" />
+                <input asp-for="BirthDate" type="date" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             </div>
@@ -175,10 +175,21 @@
                 <b class="text-info">Kindly select a sutable date and time for needed test.</b>
             <div class="col-3">
             <div class="form-group">
-                <label asp-for="TestDate" class="control-label"></label>
-                <input asp-for="TestDate" class="form-control" />
-                <span asp-validation-for="TestDate" class="text-danger"></span>
-                    </div>
+               @* <label asp-for="TestDate" class="control-label"></label>
+                    <input asp-for="TestDate" type="date" class="form-control" />
+                <span asp-validation-for="TestDate" class="text-danger"></span>*@
+                    <select class="form-control" name="TestDate">
+                        @if (ViewBag.AvailablDates is not null)
+                        {
+                            var availablDates = (List<DateTime>)ViewBag.AvailablDates;
+                            foreach (var availablDate in  availablDates)
+                            {
+                                <option>@availablDate.ToLongDateString()</option>
+                            }
+                        }
+
+                    </select>
+                </div>
                 </div>
             
                  <div class="form-check">
@@ -205,7 +216,10 @@
             </div>
              
                 <div class="form-group">
-                  <input type="submit" value="Submit" class="btn btn-primary float-end"/>
+
+                <a asp-action="index" asp-controller="Requests"><input type="submit" value="Submit" class="btn btn-primary float-end" /></a>
+                
+                
             </div>
             
         </div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Laboratory.Data;
 using Laboratory.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Laboratory.Controllers
 {
@@ -20,11 +21,26 @@ namespace Laboratory.Controllers
         }
 
         // GET: Requests
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? college , string? studentstatus)
         {
-              return _context.Requests != null ? 
-                          View(await _context.Requests.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Requests'  is null.");
+            if (!string.IsNullOrEmpty(college) && !string.IsNullOrEmpty(studentstatus))
+            {
+                return View(await _context.Requests.Where(r => r.College == college && r.StudentStatus == studentstatus).ToListAsync());
+            }
+
+            else if(!string.IsNullOrEmpty(college) || !string.IsNullOrEmpty(studentstatus))
+            {
+                return View(await _context.Requests.Where(r => r.College == college || r.StudentStatus == studentstatus).ToListAsync());
+            }
+            else
+            {
+                return _context.Requests != null ?
+                            View(await _context.Requests.ToListAsync()) :
+                            Problem("Entity set 'ApplicationDbContext.Requests'  is null.");
+                
+            }
+
+
         }
 
         // GET: Requests/Details/5
@@ -48,6 +64,30 @@ namespace Laboratory.Controllers
         // GET: Requests/Create
         public IActionResult Create()
         {
+            var managment = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
+            if (managment is null)
+            {
+                ViewBag.ErrorMessage = "You need to set the limit in mangment page";
+                return View();
+            }
+            var limitDays = managment.Value;
+
+            var dateTo = DateTime.Now.AddDays(30);
+            List<DateTime> avilableDates = new List<DateTime>();
+            for(var date = DateTime.Now;date <= dateTo;date = date.AddDays(1))
+            {
+                if (date.DayOfWeek.ToString() == "Friday" || date.DayOfWeek.ToString() == "Saturday")
+                {
+                    continue;
+                 }
+                var requestCount = _context.Requests.Where(x => x.TestDate.Date == date.Date).Count();
+                if (requestCount >= limitDays)
+                {
+                    continue;
+                }
+                 avilableDates.Add(date);
+                }
+            ViewBag.AvailablDates = avilableDates;
             return View();
         }
 
@@ -56,17 +96,34 @@ namespace Laboratory.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NationalResidenceId,UniversityNumber,StudentStatus,College,FirstNameEnglish,LastNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,LastNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,TestDate")] Requests requests)
+        public async Task<IActionResult> Create([Bind("Id,NationalResidenceId,UniversityNumber,StudentStatus,College,FirstNameEnglish,FatherNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,FatherNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,TestDate")] Requests requests)
         {
+            var management = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
+            if (management is null)
+            {
+                ViewBag.ErrorMessage = "You need to set limit in management page";
+                return View();
+            }
+            var limitDays = management.Value;
+            var requestsCount=_context.Requests.Where(X => X.TestDate == requests.TestDate).Count();
+            if (requestsCount >= limitDays)
+            {
+                ViewBag.ErrorMessage = "Sorry,The limit of Requests for this Day is Reached";
+                return View();
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(requests);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Message");
             }
             return View(requests);
         }
-
+        public IActionResult Message()
+        {
+            return View();
+        }
         // GET: Requests/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -88,7 +145,7 @@ namespace Laboratory.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NationalResidenceId,UniversityNumber,StudentStatus,College,FirstNameEnglish,LastNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,LastNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,TestDate")] Requests requests)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NationalResidenceId,UniversityNumber,StudentStatus,College,FirstNameEnglish,FatherNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,FatherNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,TestDate")] Requests requests)
         {
             if (id != requests.Id)
             {

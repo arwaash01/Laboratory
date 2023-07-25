@@ -1,4 +1,4 @@
-﻿@model Laboratory.Models.Management
+﻿@model int
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,29 +9,37 @@
 <h4>Management</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="row mt-3">
+            <div class="col-2 mx-2 my-2">
+                    <select class="form-select float-start">
+                        <option>Language</option>
+                        <option value="1">English </option>
+                        <option value="2">Arabic </option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Value" class="control-label"></label>
-                <input asp-for="Value" class="form-control" />
-                <span asp-validation-for="Value" class="text-danger"></span>
+            <div class="row bg-info mx-2 rounded ">
+                <h5 class=" text-light text-center">System Configuration</h5>
             </div>
+            <div class=" = row">
+
+            <div class="col-4 mx-2 my-2">
+                  <label  class="control-label"> Limitation Days</label>
+                  <input name="limitationDays" class="form-control" value="@Model" />
+               </div>
+              
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary my-2 mx-2" />
+            </div>
             </div>
         </form>
-    </div>
+   
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="Requests" >Back to Request List</a>
 </div>
 
 @section Scripts {
