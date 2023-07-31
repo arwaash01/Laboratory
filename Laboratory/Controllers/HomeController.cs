@@ -1,21 +1,36 @@
 ﻿using Laboratory.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Laboratory.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public HomeController(ILogger<HomeController> logger , RoleManager<IdentityRole> roleManager )
         {
             _logger = logger;
+            _roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var roles = await _roleManager.Roles.ToListAsync();
+            return View(roles);
+        }
+        public async Task<IActionResult> AddRole(string roleName)
+        {
+            if (roleName != null)
+            {
+                await _roleManager.CreateAsync(new IdentityRole(roleName.Trim()));
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

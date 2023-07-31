@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Laboratory.Data;
 using Laboratory.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Laboratory.Controllers
 {
@@ -21,6 +23,7 @@ namespace Laboratory.Controllers
         }
 
         // GET: Requests
+        [Authorize(Roles = "Admin , Recep")]
         public async Task<IActionResult> Index(string? college , string? studentstatus)
         {
             if (!string.IsNullOrEmpty(college) && !string.IsNullOrEmpty(studentstatus))

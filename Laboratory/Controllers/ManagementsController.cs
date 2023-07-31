@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Laboratory.Data;
 using Laboratory.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Laboratory.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ManagementsController : Controller
     {
         private readonly ApplicationDbContext _context;
