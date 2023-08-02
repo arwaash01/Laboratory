@@ -21,7 +21,10 @@
         </div>
             <div class="col-2">
                 <div class="form-group">
-                    <a asp-action="Edit" asp-controller="Managements" class="btn btn-info text-light">System Config</a>    
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-controller="Mangements" class="btn btn-info text-light">System Config</a>
+                }
                 </div>
             </div>
         

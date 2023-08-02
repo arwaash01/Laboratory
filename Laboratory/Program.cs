@@ -60,25 +60,25 @@ using (var scope = app.Services.CreateScope())
 
 
 
-    var adminUser = await userManager.FindByEmailAsync("renad@gmail.com");
+    var adminUser = await userManager.FindByEmailAsync("reem@gmail.com");
     if (adminUser == null)
     {
         var user = new IdentityUser
         {
-            UserName = "renad@gmail.com",
-            Email = "renad@gmail.com",
+            UserName = "reem@gmail.com",
+            Email = "reem@gmail.com",
         };
         await userManager.CreateAsync(user, "A-123456a ");
         await userManager.AddToRoleAsync(user, "Admin");
     }
 
-    var recepUser = await userManager.FindByEmailAsync("omar@gmail.com");
+    var recepUser = await userManager.FindByEmailAsync("sara@gmail.com");
     if (recepUser == null)
     {
         var user = new IdentityUser
         {
-            UserName = "omar@gmail.com",
-            Email = "omar@gmail.com",
+            UserName = "sara@gmail.com",
+            Email = "sara@gmail.com",
         };
         await userManager.CreateAsync(user, "A-123456a");
         await userManager.AddToRoleAsync(user, "Recep");
